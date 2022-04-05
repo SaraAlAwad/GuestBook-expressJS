@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <h1>Teufelsrochen Guestbook</h1>
+        <form action="/neuerUser" method="post" id="form">
+            <input type="text" name="fname" id="fname" required>
+            <input type="text" name="lname" id="lname" required>
+            <input type="email" name="email" id="email" required>
+            <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+            <!-- <div onclick="submit_form()">Click Me To Submit</div> -->
+            <input type="submit" value="add">
+
+        </form>
+    </section>
+
+    <% if(users.length===0) { %>
+        <h1 class="message">No one has posted yet. Be the first!</h1>
+        <% } else { %>
+            <% users.forEach((user)=> { %>
+                <div class="output">
+                    <h2>
+                        <%- user.fname %>
+                            <%- user.lname %>
+                    </h2>
+                    <a href="mailto: <%- user.email %>">
+                        <%- user.email %>
+                    </a>
+
+                    <p>schreibt: <%- user.txt %>
+                    </p>
+                </div>
+                <% }) %>
+                    <% } %>
+
+                        <script>
+                            function submit_form() {
+                                var form = document.getElementById("form");
+                                form.submit();
+                                alert("Your Message Sent");
+                            }
+                        </script>
+</body>
+
+</html>
